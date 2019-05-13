@@ -1,10 +1,5 @@
 package pt.ulisboa.tecnico.cnv.server;
 
-import com.sun.deploy.net.BasicHttpRequest;
-import com.sun.deploy.net.HttpResponse;
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -14,7 +9,7 @@ import java.nio.file.Files;
 import java.util.concurrent.Executors;
 
 public class LoadBalancer {
-
+/*
 
     public static void main(final String[] args) throws Exception {
 
@@ -47,5 +42,6 @@ public class LoadBalancer {
         }
 
     }
+    */
 }
 
