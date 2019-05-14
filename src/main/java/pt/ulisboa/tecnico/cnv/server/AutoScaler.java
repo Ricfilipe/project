@@ -106,6 +106,7 @@ public class AutoScaler {
             DescribeInstancesRequest request = new DescribeInstancesRequest();
             List<String> values = new ArrayList<>();
             values.add("Server");
+            values.add("ServerC");
             DescribeInstancesResult describeInstancesRequest = ec2.describeInstances(request.withFilters(new Filter("tag:WebServer",values)));
             List<Reservation> reservations = describeInstancesRequest.getReservations();
             Map<Instance, Boolean> myMap = new ConcurrentHashMap<Instance, Boolean>();

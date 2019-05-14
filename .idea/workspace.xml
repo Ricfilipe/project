@@ -2,148 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba1e5492-3ca3-451f-873f-fc4aeffd0a41" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/data/InstanceData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/AnalyzeMethods.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/highBIT/BasicBlock.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/highBIT/BasicBlockArray.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/highBIT/BasicBlockArrayEnumerator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/highBIT/ClassInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/highBIT/Instruction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/highBIT/InstructionArray.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/highBIT/InstructionArrayEnumerator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/highBIT/InstructionDoubleOperand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/highBIT/InstructionLookupswitch.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/highBIT/InstructionQuadOperand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/highBIT/InstructionSingleOperand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/highBIT/InstructionTable.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/highBIT/InstructionTableswitch.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/highBIT/InstructionTripleOperand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/highBIT/InstructionWide.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/highBIT/Routine.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/Attribute_Info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/Attribute_Info_Parse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/CONSTANT_Class_Info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/CONSTANT_Double_Info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/CONSTANT_Fieldref_Info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/CONSTANT_Float_Info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/CONSTANT_Integer_Info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/CONSTANT_InterfaceMethodref_Info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/CONSTANT_Long_Info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/CONSTANT_Methodref_Info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/CONSTANT_NameAndType_Info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/CONSTANT_Null_Info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/CONSTANT_String_Info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/CONSTANT_Utf8_Info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/ClassFile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/ClassFileException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/Code_Attribute.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/ColdClassFile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/Constant.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/ConstantValue_Attribute.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/Constant_Pool_Parse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/Cp_Info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/Deprecated_Attribute.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/Exception_Table.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/Exceptions_Attribute.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/Field_Info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/InnerClassMembers.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/InnerClasses_Attribute.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/LineNumberTable_Attribute.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/Line_Number_Table.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/LocalVariableTable_Attribute.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/Local_Variable_Table.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/Method_Info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/SourceFile_Attribute.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/StackAllocLocalVariables_Attribute.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/Synthetic_Attribute.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BIT/lowBIT/Unknown_Attribute.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/Branch.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/BranchPrediction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/FileCopy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/GetStatsOfClassesExecuted.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/ICount.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/MyInstruction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/StatisticsBranch.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/StatisticsTool.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/examples/Compress$Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/examples/Compress.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/examples/Factorial.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/examples/Factorial4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/examples/Fibonacci.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/examples/Hello.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/examples/TestOpsVarsFields.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/examples/ThreadLister$Applet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/examples/ThreadLister.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/AlreadySelectedException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/AmbiguousOptionException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/BasicParser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/CommandLine$Builder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/CommandLine.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/CommandLineParser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/DefaultParser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/GnuParser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/HelpFormatter$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/HelpFormatter$OptionComparator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/HelpFormatter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/MissingArgumentException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/MissingOptionException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/Option$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/Option$Builder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/Option.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/OptionBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/OptionGroup.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/OptionValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/Options.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/ParseException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/Parser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/PatternOptionBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/PosixParser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/TypeHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/UnrecognizedOptionException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/org/apache/commons/cli/Util.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/generator/AbstractGeneratorStrategy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/generator/BlueNoiseStrategy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/generator/Generator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/generator/GeneratorArgumentParser$GeneratorParameters.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/generator/GeneratorArgumentParser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/generator/GeneratorFactory$GeneratorType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/generator/GeneratorFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/generator/GeneratorMain.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/generator/GeneratorStrategy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/generator/PyramidStrategy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/generator/RampTestStrategy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/generator/RandomHillStrategy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/generator/SinusoidalStrategy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/server/WebServer$MyHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/server/WebServer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/solver/AStarStrategy$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/solver/AStarStrategy$Node.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/solver/AStarStrategy$NodeComparator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/solver/AStarStrategy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/solver/AbstractSolverStrategy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/solver/BFSStrategy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/solver/Coordinate.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/solver/DFSStrategy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/solver/SampleParserMain.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/solver/Solver.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/solver/SolverArgumentParser$SolverParameters.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/solver/SolverArgumentParser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/solver/SolverFactory$SolverType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/solver/SolverFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/solver/SolverMain.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/solver/SolverStrategy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/util/AbstractArgumentParser$GenericParameters.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/util/AbstractArgumentParser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/util/ArgumentParser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/util/Gradient$GradientType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/util/Gradient.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/util/ImageBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/util/Perlin2d.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/util/interpolator/CosineInterpolator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/util/interpolator/Interpolator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/pt/ulisboa/tecnico/cnv/util/interpolator/LinearInterpolator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/server/AutoScaler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/server/AutoScaler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/server/LoadBalancer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/server/LoadBalancer.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -198,13 +59,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/server/LoadBalancer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="28" selection-start-line="28" selection-end-line="28" />
+            <state relative-caret-position="347">
+              <caret line="140" column="79" selection-start-line="140" selection-start-column="79" selection-end-line="140" selection-end-column="79" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2116#2139#0" expanded="true" />
+                <element signature="e#2430#4513#0" expanded="true" />
+                <element signature="e#4512#4513#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -213,8 +77,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/server/WebServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="53" column="12" selection-start-line="53" selection-start-column="12" selection-end-line="54" />
+            <state relative-caret-position="323">
+              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -222,11 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/server/AutoScaler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="149" column="53" selection-start-line="149" selection-start-column="53" selection-end-line="149" selection-end-column="53" />
+            <state relative-caret-position="-357">
+              <caret line="66" selection-start-line="66" selection-end-line="67" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -255,8 +119,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/data/SolverData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
+            <state relative-caret-position="170">
+              <caret line="10" column="2" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/data/InstanceData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="21" column="23" lean-forward="true" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -319,9 +195,10 @@
         <option value="$PROJECT_DIR$/src/main/java/MyInstruction.java" />
         <option value="$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/data/SolverData.java" />
         <option value="$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/server/WebServer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/server/LoadBalancer.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/data/InstanceData.java" />
         <option value="$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/server/AutoScaler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/server/LoadBalancer.java" />
       </list>
     </option>
   </component>
@@ -336,7 +213,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -382,7 +258,7 @@
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="cnv" type="462c0819:PsiDirectoryNode" />
-              <item name="solver" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="project" type="b2602c69:ProjectViewProjectNode" />
@@ -392,12 +268,13 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557601880999" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557792520977" />
     <property name="last_opened_file_path" value="C:/Documents and Settings" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -542,12 +419,12 @@
       <workItem from="1556897222920" duration="4572000" />
       <workItem from="1557142671156" duration="824000" />
       <workItem from="1557592463171" duration="9992000" />
-      <workItem from="1557774021627" duration="231000" />
+      <workItem from="1557774021627" duration="16313000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46589000" />
+    <option name="totallyTimeSpent" value="62902000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -574,7 +451,7 @@
       <window_info anchor="bottom" id="Version Control" order="12" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.3286119" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info active="true" anchor="right" id="Ant Build" order="1" visible="true" weight="0.24966443" />
+      <window_info active="true" anchor="right" id="Ant Build" order="1" visible="true" weight="0.16308725" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Maven" order="3" />
       <window_info anchor="right" id="Palette" order="4" />
@@ -588,30 +465,11 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/server/LoadBalancer.java</url>
-          <line>28</line>
-          <properties />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/examples/ThreadLister.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/examples/FileCopy.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -867,6 +725,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$PROJECT_DIR$/aws-java-sdk-1.11.545/lib/aws-java-sdk-1.11.545.jar!/com/amazonaws/services/ec2/model/DescribeInstancesResult.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/solver/SolverFactory.class">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/solver/AStarStrategy.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -884,10 +752,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/aws-java-sdk-1.11.545/lib/aws-java-sdk-1.11.545.jar!/com/amazonaws/services/ec2/model/DescribeInstancesResult.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/data/SolverData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        <state relative-caret-position="170">
+          <caret line="10" column="2" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -898,20 +769,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/data/SolverData.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/data/InstanceData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/server/WebServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="53" column="12" selection-start-line="53" selection-start-column="12" selection-end-line="54" />
+        <state relative-caret-position="357">
+          <caret line="21" column="23" lean-forward="true" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -925,13 +786,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/solver/SolverFactory.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/server/LoadBalancer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/server/WebServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        <state relative-caret-position="323">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -940,11 +798,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/server/AutoScaler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="149" column="53" selection-start-line="149" selection-start-column="53" selection-end-line="149" selection-end-column="53" />
+        <state relative-caret-position="-357">
+          <caret line="66" selection-start-line="66" selection-end-line="67" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4699#4718#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pt/ulisboa/tecnico/cnv/server/LoadBalancer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="140" column="79" selection-start-line="140" selection-start-column="79" selection-end-line="140" selection-end-column="79" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2116#2139#0" expanded="true" />
+            <element signature="e#2430#4513#0" expanded="true" />
+            <element signature="e#4512#4513#0" expanded="true" />
           </folding>
         </state>
       </provider>
