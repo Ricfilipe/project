@@ -72,7 +72,10 @@ public class AutoScaler {
                             "location (~/.aws/credentials), and is in valid format.",
                     e);
         }
-        ec2 = AmazonEC2ClientBuilder.standard().withRegion("us-east-1").withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+        ec2 = AmazonEC2ClientBuilder.standard().withRegion("us-east-1")
+                .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .build();
+
         TagSpecification tag = new TagSpecification();
         tag.withTags( new Tag("WebServer","Server")).setResourceType("instance");
         tags.add(tag);
@@ -81,11 +84,7 @@ public class AutoScaler {
 
     public static  void main(String[] args) throws Exception {
 
-
         init();
-
-
-
 
         final HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
 
@@ -164,13 +163,14 @@ public class AutoScaler {
             RunInstancesRequest runInstancesRequest =
                     new RunInstancesRequest();
 
-            runInstancesRequest.withImageId("ami-05bb58f95078557a4")
+            runInstancesRequest.withImageId("ami-07efe8289da27c451")
                     .withInstanceType("t2.micro")
                     .withMinCount(1)
                     .withMaxCount(1)
                     .withKeyName("CNV-lab-AWS")
                     .withSecurityGroups("CNV-ssh+http")
-                    .withTagSpecifications(tags);
+                    .withTagSpecifications(tags).
+                    withMonitoring(true);
 
             RunInstancesResult runInstancesResult =
                     ec2.runInstances(runInstancesRequest);

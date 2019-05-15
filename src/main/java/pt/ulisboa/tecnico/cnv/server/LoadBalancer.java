@@ -6,21 +6,24 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.services.cloudwatch.AmazonCloudWatch;
+import com.amazonaws.services.cloudwatch.AmazonCloudWatchClientBuilder;
+import com.amazonaws.services.cloudwatch.model.Dimension;
+import com.amazonaws.services.cloudwatch.model.GetMetricStatisticsRequest;
+import com.amazonaws.services.cloudwatch.model.GetMetricStatisticsResult;
 import com.amazonaws.services.ec2.AmazonEC2;
 import com.amazonaws.services.ec2.AmazonEC2ClientBuilder;
 import com.amazonaws.services.ec2.model.*;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import pt.ulisboa.tecnico.cnv.managers.InstancesManager;
 import pt.ulisboa.tecnico.cnv.data.InstanceData;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.InetSocketAddress;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.file.Files;
+import java.net.*;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
@@ -29,13 +32,16 @@ public class LoadBalancer {
 
     public static final int WEBSERVER_PORT = 8000;
     public static final long period = 1000L;
-    public static final int TRIES_UNTIL_REBOOT = 5;
-    public static final long ALIVE_PERIOD = 1000L;
+    private static final long INSTANCEM_MANAGER_PERIOD = 10000L;
+    private static final int MAX_INSTANCES = 20;
+    private static final int MIN_INSTANCES = 1;
 
     public static Set<InstanceData> instances;
     static AmazonEC2 ec2;
-
+    private static AmazonCloudWatch cloudWatch;
+    public static Map<InstanceData,Integer> tries = new ConcurrentHashMap<>();
     public static Set<InstanceData> availableInstances;
+    private static Instance autoScalerInstance;
 
     private static void init() throws Exception {
 
@@ -55,7 +61,10 @@ public class LoadBalancer {
                     e);
         }
         ec2 = AmazonEC2ClientBuilder.standard().withRegion("us-east-1").withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-
+        cloudWatch = AmazonCloudWatchClientBuilder.standard()
+                .withRegion("us-east-1")
+                .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .build();
     }
 
     public static void main(final String[] args) throws Exception {
@@ -63,16 +72,56 @@ public class LoadBalancer {
         init();
         Map<InstanceData, Boolean> myMap = new ConcurrentHashMap<InstanceData, Boolean>();
         instances =  Collections.newSetFromMap(myMap);
+        createInstanceManager();
+
+         myMap = new ConcurrentHashMap<InstanceData, Boolean>();
+        availableInstances =  Collections.newSetFromMap(myMap);
+
+        createInstanceFinder();
+        final HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
+        server.createContext("/climb", new LoadBalancer.LoadBalancerHandler());
+        server.setExecutor(Executors.newCachedThreadPool());
+        server.start();
+    }
+
+    static class LoadBalancerHandler implements HttpHandler {
+        public static int current = 0;
+        public void handle(final HttpExchange t) throws IOException {
+            InstancesManager manager = InstancesManager.getInstanceManager();
+            System.out.println("received request");
+
+            InstanceData ip = manager.findBestInstance();
+            System.out.println("http://" + ip.publicIP +":"+LoadBalancer.WEBSERVER_PORT +"/climb?" + t.getRequestURI().getQuery());
+            URL url = new URL("http://" + ip.publicIP +":"+LoadBalancer.WEBSERVER_PORT + "/climb?" + t.getRequestURI().getQuery());
+            System.out.println("Sending request to: " + ip.publicIP);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.connect();
+            InputStream serverResponse = con.getInputStream();
+            final OutputStream os = t.getResponseBody();
+
+            os.write(serverResponse.read());
+
+            System.out.println("Receive response from: " + ip.publicIP);
+            os.close();
+            con.disconnect();
+            System.out.println("> Sent response to " + t.getRemoteAddress().toString());
+        }
+
+    }
+
+
+
+    private static void createInstanceFinder(){
         TimerTask repeatedTask = new TimerTask() {
             public void run() {
+                InstancesManager manage = InstancesManager.getInstanceManager();
                 try {
                     DescribeAvailabilityZonesResult availabilityZonesResult = ec2.describeAvailabilityZones();
-                    /* using AWS Ireland.
-                     * TODO: Pick the zone where you have your AMI, sec group and keys */
                     DescribeInstancesRequest request = new DescribeInstancesRequest();
                     List<String> values = new ArrayList<>();
                     values.add("Server");
-                    if(instances.size()==0){
+                    if(manage.count()==0){
                         values.add("ServerC");
                     }
                     DescribeInstancesResult describeInstancesRequest = ec2.describeInstances(request.withFilters(new Filter("tag:WebServer", values)));
@@ -85,14 +134,30 @@ public class LoadBalancer {
                         List<String> ids = new ArrayList<>();
                         System.out.println("Found "+ result.size()+ " new server.");
                         for (Instance instnc : result) {
-                            instances.add(new InstanceData(instnc));
-                            ids.add(instnc.getInstanceId());
+                            if(instnc.getState().getName().equals("running")){
+                                manage.addInstance(instnc);
+                                ids.add(instnc.getInstanceId());
+                            }
                         }
-
-                        CreateTagsRequest request2 = new CreateTagsRequest().withTags(new Tag().withKey("WebServer").withValue("ServerC"));
-                        request2.setResources(ids);
-                        ec2.createTags(request2);
+                        if(ids.size()>0) {
+                            CreateTagsRequest request2 = new CreateTagsRequest().withTags(new Tag().withKey("WebServer").withValue("ServerC"));
+                            request2.setResources(ids);
+                            ec2.createTags(request2);
+                        }
                     }
+
+                    values.clear();
+                    values.add("AutoScaler");
+                     describeInstancesRequest = ec2.describeInstances(request.withFilters(new Filter("tag:WebServer", values)));
+                     reservations = describeInstancesRequest.getReservations();
+                     List result2 = new ArrayList();
+                    for (Reservation reservation : reservations){
+                        result2.addAll(reservation.getInstances());
+                    }
+                    if(result2.size()>0){
+                        autoScalerInstance = (Instance) result2.get(0);
+                    }
+
                 }catch (AmazonServiceException ase) {
                     System.out.println("Caught Exception: " + ase.getMessage());
                     System.out.println("Reponse Status Code: " + ase.getStatusCode());
@@ -102,65 +167,92 @@ public class LoadBalancer {
             }
         };
 
-/*
-        TimerTask pingTask = new TimerTask() {
-            public void run() {
-                if(instances.size()>0){
-                    try {
-                    for (InstanceData data :  instances ) {
 
-                            URL url = new URL("http://" + data.publicIP +":"+LoadBalancer.WEBSERVER_PORT + "/ping");
 
-                        }
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        };
-*/
         Timer timer = new Timer("LookForWebServers");
-        Timer pingTimer = new Timer("PingWebservers");
         timer.schedule(repeatedTask,0L,period);
-        //pingTimer.schedule(pingTask,ALIVE_PERIOD,ALIVE_PERIOD);
-
-
-        final HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
-        server.createContext("/climb", new LoadBalancer.LoadBalancerHandler());
-        server.setExecutor(Executors.newCachedThreadPool());
-        server.start();
     }
 
-    static class LoadBalancerHandler implements HttpHandler {
-        public static int current = 0;
-        public void handle(final HttpExchange t) throws IOException {
 
-            System.out.println("received request");
-            String ip = getInstanceIp();
-            System.out.println("http://" + ip +":"+LoadBalancer.WEBSERVER_PORT +"/climb?" + t.getRequestURI().getQuery());
-            URL url = new URL("http://" + ip +":"+LoadBalancer.WEBSERVER_PORT + "/climb?" + t.getRequestURI().getQuery());
+    public static GetMetricStatisticsResult requestCpuUsage(String id){
 
-            System.out.println("Sending request to: " + ip);
+        long offsetInMilliseconds = 1000 * 60 * 10 * 5;
+        Dimension instanceDimension = new Dimension();
+        instanceDimension.setName("InstanceId");
+
+        instanceDimension.setValue(id);
+        GetMetricStatisticsRequest request = new GetMetricStatisticsRequest()
+                .withStartTime(new Date(new Date().getTime() - offsetInMilliseconds))
+                .withNamespace("AWS/EC2")
+                .withPeriod(60)
+                .withMetricName("CPUUtilization")
+                .withStatistics("Average")
+                .withDimensions(instanceDimension)
+                .withEndTime(new Date());
+
+        return cloudWatch.getMetricStatistics(request);
+
+    }
+
+    private static void createInstanceManager(){
+        TimerTask repeatedTask = new TimerTask() {
+            @Override
+            public void run() {
+                InstancesManager.getInstanceManager().cycle();
+            }
+        };
+        Timer timer = new Timer("InstanceManager");
+        timer.schedule(repeatedTask,0L,INSTANCEM_MANAGER_PERIOD);
+    }
+
+    public static void  requestNewInstance(){
+        InstancesManager manager = InstancesManager.getInstanceManager();
+        if(MAX_INSTANCES< manager.count()){
+            URL url = null;
+            try {
+                url = new URL("http://" + autoScalerInstance.getPublicDnsName() +":"+ LoadBalancer.WEBSERVER_PORT + "/addServer");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
             con.connect();
+            InputStream input = con.getInputStream();
+            input.read();
+            con.disconnect();
+            input.close();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (ProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-            final OutputStream os = t.getResponseBody();
-
-            os.write(con.getInputStream().read());
-
-            System.out.println("Receive response from: " + ip);
-            os.close();
-            System.out.println("> Sent response to " + t.getRemoteAddress().toString());
-        }
-
-        public synchronized String getInstanceIp(){
-            List<InstanceData> list = new ArrayList<>(instances);
-            String result = list.get(current).publicIP;
-            current = (current+1)%list.size();
-            return result;
         }
     }
+
+    public static void  requestRemoveInstance(String id){
+        InstancesManager manager = InstancesManager.getInstanceManager();
+        if(MIN_INSTANCES>manager.count()){
+            URL url = null;
+            try {
+                url = new URL("http://" + autoScalerInstance.getPublicDnsName() +":"+ LoadBalancer.WEBSERVER_PORT + "/server?"+id);
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                con.setRequestMethod("GET");
+                con.connect();
+                InputStream input = con.getInputStream();
+                input.read();
+                con.disconnect();
+                input.close();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (ProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
 
 }
 

@@ -162,8 +162,7 @@ public class WebServer {
 	static class PingHandler implements HttpHandler {
 		@Override
 		public void handle(HttpExchange t) throws IOException {
-			String response = "This was the query:" + t.getRequestURI().getQuery()
-					+ "##";
+			String response = "ping";
 			t.sendResponseHeaders(200, response.length());
 			OutputStream os = t.getResponseBody();
 			os.write(response.getBytes());
