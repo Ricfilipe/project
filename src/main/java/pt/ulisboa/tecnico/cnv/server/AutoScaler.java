@@ -62,18 +62,8 @@ public class AutoScaler {
          * credential profile by reading from the credentials file located at
          * (~/.aws/credentials).
          */
-        AWSCredentials credentials = null;
-        try {
-            credentials = new ProfileCredentialsProvider().getCredentials();
-        } catch (Exception e) {
-            throw new AmazonClientException(
-                    "Cannot load the credentials from the credential profiles file. " +
-                            "Please make sure that your credentials file is at the correct " +
-                            "location (~/.aws/credentials), and is in valid format.",
-                    e);
-        }
+
         ec2 = AmazonEC2ClientBuilder.standard().withRegion("us-east-1")
-                .withCredentials(new AWSStaticCredentialsProvider(credentials))
                 .build();
 
         TagSpecification tag = new TagSpecification();
@@ -163,7 +153,7 @@ public class AutoScaler {
             RunInstancesRequest runInstancesRequest =
                     new RunInstancesRequest();
 
-            runInstancesRequest.withImageId("ami-07efe8289da27c451")
+            runInstancesRequest.withImageId("ami-0744f36baea0d197c")
                     .withInstanceType("t2.micro")
                     .withMinCount(1)
                     .withMaxCount(1)

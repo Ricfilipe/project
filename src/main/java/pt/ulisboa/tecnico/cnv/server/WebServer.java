@@ -7,12 +7,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import pt.ulisboa.tecnico.cnv.data.DynamoController;
 import pt.ulisboa.tecnico.cnv.data.SolverData;
 import pt.ulisboa.tecnico.cnv.solver.Solver;
 import pt.ulisboa.tecnico.cnv.solver.SolverArgumentParser;
@@ -22,7 +25,18 @@ import javax.imageio.ImageIO;
 
 public class WebServer {
 
+	public static ConcurrentHashMap store= new ConcurrentHashMap<>();
+	public static DynamoDBMapper mapper;
+
+	private static void init() throws Exception {
+		DynamoController.init();
+		mapper = new DynamoDBMapper(DynamoController.dynamoDB);
+	}
+
+
 	public static void main(final String[] args) throws Exception {
+
+		init();
 
 		//final HttpServer server = HttpServer.create(new InetSocketAddress("127.0.0.1", 8000), 0);
 
@@ -101,10 +115,9 @@ public class WebServer {
 
 			// Create solver instance from factory.
 			final Solver s = SolverFactory.getInstance().makeSolver(ap);
-			PrintWriter file = new PrintWriter(new BufferedWriter(new FileWriter("myfile.txt", true)));
-			file.println(Thread.currentThread().getId()+ " ->" + myID);
-			file.println(myID+ " ->" + new SolverData(s,ap).toString());
-			file.close();
+
+
+
 			// Write figure file to disk.
 			File responseFile = null;
 			try {
@@ -136,7 +149,7 @@ public class WebServer {
 
 			// Send response to browser.
 			final Headers hdrs = t.getResponseHeaders();
-
+			System.out.println(responseFile.length());
 			t.sendResponseHeaders(200, responseFile.length());
 
 			hdrs.add("Content-Type", "image/png");
@@ -152,6 +165,25 @@ public class WebServer {
 
 			os.close();
 			System.out.println("> Sent response to " + t.getRemoteAddress().toString());
+
+
+			SolverData data = new SolverData();
+			Long number = new Long(Thread.currentThread().getId());
+			System.out.println("Sending to  DynamoDB "+(Integer)store.get(number));
+			data.setCost((Integer)store.get(number));
+			data.setStartX(ap.getStartX());
+			data.setStartY(ap.getStartY());
+			data.setInputImage(ap.getInputImage());
+			data.setStrategy(ap.getSolverStrategy().name());
+			data.setX0(ap.getX0());
+			data.setX1(ap.getX1());
+			data.setY0(ap.getY0());
+			data.setY1(ap.getY1());
+			data.setQuery(query);
+			System.out.println("Sending now...");
+			mapper.save(data);
+			System.out.println("ITEM ADDED");
+
 		}
 
 		private synchronized  int getID(){

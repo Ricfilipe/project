@@ -21,6 +21,7 @@ public class InstancesManager {
     private final static double MIN_CPU = 35;
     private final static double MAX_CPU = 80;
 
+    private int numberCreating = 0;
 
     private InstancesManager() {
     }
@@ -39,7 +40,7 @@ public class InstancesManager {
     public void addInstance(Instance instance) {
         System.out.println("Adding " + instance.getInstanceId());
         InstanceData instanceData = new InstanceData(instance);
-        idsToInstances.put(instanceData.id, instanceData);
+        idsToInstances.put(instanceData.publicIP, instanceData);
     }
 
     public void cycle(){
@@ -116,11 +117,18 @@ public class InstancesManager {
     }
 
 
-    public synchronized InstanceData findBestInstance() {
+    public  InstanceData findBestInstance(int load) {
+        while(getNumber()>0){
+            try {
+                System.out.println("Wainting for Creation");
+                Thread.sleep(2000L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
-        List<InstanceData> list = new ArrayList<>( idsToInstances.values());
-        InstanceData result = list.get(current);
-        current = (current+1)%list.size();
+        InstanceData result = findLeastUsed(load);
+        System.out.println(result.publicIP +" workload is -> " +result.getWorkload());
         return result;
     }
 
@@ -128,12 +136,17 @@ public class InstancesManager {
         TimerTask singleTask = new TimerTask() {
             @Override
             public void run() {
-                String id = "TODO";
+
+                String id =  InstancesManager.getInstanceManager().findBestInstance(0).id;
                LoadBalancer.requestRemoveInstance(id);
             }
         };
         Timer timer = new Timer("RemoveInstance");
         timer.schedule(singleTask,0);
+    }
+
+    public void removeLoad(InstanceData ip, int load){
+        idsToInstances.get(ip).removeWorkload(load);
     }
 
     private void addInstance(){
@@ -148,6 +161,32 @@ public class InstancesManager {
     }
 
 
+    public  synchronized InstanceData findLeastUsed( int load){
+        List<InstanceData> list = new ArrayList<>( idsToInstances.values());
 
+        InstanceData result = null;
+        int bestWork = Integer.MAX_VALUE;
+        for(InstanceData data : list){
+            if(data.getWorkload()<bestWork){
+                result = data;
+            }
+        }
+        result.addWorkload(load);
+        return result;
+    }
+
+    public synchronized void addCreation(){
+        numberCreating++;
+    }
+
+    public synchronized void removeCreation(int size){
+        this.numberCreating = this.numberCreating - size;
+        if(this.numberCreating<0)
+            this.numberCreating =0;
+    }
+
+    public int getNumber(){
+        return numberCreating;
+    }
 
 }

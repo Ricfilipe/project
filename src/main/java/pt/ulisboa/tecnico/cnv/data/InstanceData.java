@@ -14,12 +14,25 @@ public class InstanceData {
     public String id;
     public boolean alive ;
     public int tries;
+    private int workload;
 
     public InstanceData(Instance instance) {
         this.publicIP = instance.getPublicIpAddress();
         this.id = instance.getInstanceId();
         this.alive = false;
         this.tries = 0;
+        this.workload = 0;
     }
 
+    public int  getWorkload(){
+        return workload;
+    }
+
+    public void addWorkload(int load){
+        this.workload += load;
+    }
+
+    public void removeWorkload(int load) {
+        this.workload -= load;
+    }
 }

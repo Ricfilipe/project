@@ -1,16 +1,24 @@
 import BIT.highBIT.*;
+import pt.ulisboa.tecnico.cnv.server.LoadBalancer;
+import pt.ulisboa.tecnico.cnv.server.WebServer;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class MyInstruction {
 
     private static PrintStream out = null;
 
-    private static HashMap store= new HashMap<>();
+
     private static int counter =0;
+
+    private static void init(){
+
+    }
 
     public static void main(String argv[]) {
         File file_in = new File(argv[0]);
@@ -23,16 +31,14 @@ public class MyInstruction {
                     Routine routine = (Routine) e.nextElement();
                         for (Enumeration b = routine.getInstructionArray().elements(); b.hasMoreElements(); ) {
                             Instruction bb = (Instruction) b.nextElement();
-                            int op = bb.getInstructionType();
-                            if(op == InstructionTable.LOAD_INSTRUCTION ){
+                            int op = bb.getOpcode();
+                            if(op == InstructionTable.aload ){
                                 System.out.println(ci.getSourceFileName());
-                                bb.addBefore("MyInstruction", "count", new Integer(1));
+                                bb.addBefore("MyInstruction", "count", new Integer(op ));
                             }
 
                     }
-                        if(routine.isPublic() && routine.getMethodName().equals("solve")){
-                            routine.addAfter("MyInstruction","printICount",ci.getClassName());
-                        }
+
                 }
                 ci.write(argv[0] );
             }
@@ -40,23 +46,13 @@ public class MyInstruction {
 
 
 
-    public static synchronized void printICount(String foo) {
-        try {
-            PrintWriter file = new PrintWriter(new BufferedWriter(new FileWriter("myfile.txt", true)));
-            file.println(store.get(new Long(Thread.currentThread().getId())) +" - "+ Thread.currentThread().getId());
-            file.close();
-        }catch (Exception x){}
-        System.out.println("Logged");
-    }
-
-
     public static synchronized void count(int i) {
         Long id = new Long(Thread.currentThread().getId());
-        if(store.get(id)==null){
-            store.put(id,new Integer(1));
+        if(WebServer.store.get(id)==null){
+            WebServer.store.put(id,new Integer(1));
             return;
         }
-        store.put(id,new Integer((Integer) store.get(id)+1));
+        WebServer.store.put(id,new Integer((Integer) WebServer.store.get(id)+1));
     }
 
 }
